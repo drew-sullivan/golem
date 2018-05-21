@@ -27,13 +27,10 @@ export class GameComponent implements OnInit {
 
 	public startGame(): void {
 		this.golemDeck.shuffleDeck();
-		console.log(this.golemDeck);
 		this.merchantDeck.shuffleDeck();
 		this.availableGolemCards = this.golemDeck.cards.slice(0, 5);
-		console.log(this.availableGolemCards);
 		this.availableMerchantCards = this.merchantDeck.cards.slice(0, 6);
 		this.players = this.shufflePlayers(this.playerNameInput).map((playerName, i) => new Player(playerName, i));
-		// this.players.forEach(player => player.printInfo());
 	}
 
 	// TODO: abstract out with shuffle deck method to avoid duplication
