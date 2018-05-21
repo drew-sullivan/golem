@@ -8,16 +8,16 @@ export class Player {
   points: number;
   hand: Card[];
   gems: string;
-  playOrder: number;
-  isThisPlayersTurn: boolean;
+  turnOrder: number;
+  isActivePlayer: boolean;
 
-  constructor(name: string, playOrder: number) {
+  constructor(name: string, turnOrder: number) {
     this.name = name;
     this.points = 0;
     this.hand =  this.game.cards.merchant.starting.map(item => this.castToCard(item));
-    this.gems = this.getStartingGems(playOrder);
-    this.playOrder = playOrder;
-    this.isThisPlayersTurn = this.getTurnStatus(playOrder);
+    this.gems = this.getStartingGems(turnOrder);
+    this.turnOrder = turnOrder;
+    this.isActivePlayer = this.getTurnStatus(turnOrder);
   }
 
   public printInfo(): void {
@@ -26,13 +26,13 @@ export class Player {
     Points: ${this.points}
     Hand: ${this.hand}
     Gems: ${this.gems}
-    Currently this player's turn? ${this.isThisPlayersTurn}
+    Currently this player's turn? ${this.isActivePlayer}
     `);
   }
 
-  private getStartingGems(playOrder): string {
+  private getStartingGems(turnOrder): string {
     let startingGems = '';
-    switch (playOrder) {
+    switch (turnOrder) {
       case 1:
         startingGems = 'yyy';
         break;
@@ -50,8 +50,8 @@ export class Player {
     }
   }
 
-  private getTurnStatus(playOrder): boolean {
-    if (playOrder === 1) {
+  private getTurnStatus(turnOrder): boolean {
+    if (turnOrder === 1) {
       return true;
     } else {
       return false;
