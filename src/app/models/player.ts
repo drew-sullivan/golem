@@ -8,16 +8,16 @@ export class Player {
   points: number;
   hand: Card[];
   gems: string;
-  turnOrder: number;
+  turnOrderPosition: number;
   isActivePlayer: boolean;
 
-  constructor(name: string, turnOrder: number) {
+  constructor(name: string, turnOrderPosition: number) {
     this.name = name;
     this.points = 0;
     this.hand =  this.game.cards.merchant.starting.map(item => this.castToCard(item));
-    this.gems = this.getStartingGems(turnOrder);
-    this.turnOrder = turnOrder;
-    this.isActivePlayer = this.getTurnStatus(turnOrder);
+    this.gems = this.getStartingGems(turnOrderPosition);
+    this.turnOrderPosition = turnOrderPosition;
+    this.isActivePlayer = this.getTurnStatus(turnOrderPosition);
   }
 
   public printInfo(): void {
@@ -26,32 +26,23 @@ export class Player {
     Points: ${this.points}
     Hand: ${this.hand}
     Gems: ${this.gems}
+    turnOrderPosition: ${this.turnOrderPosition}
     Currently this player's turn? ${this.isActivePlayer}
     `);
   }
 
-  private getStartingGems(turnOrder): string {
-    let startingGems = '';
-    switch (turnOrder) {
-      case 1:
-        startingGems = 'yyy';
-        break;
-      case 2:
-      case 3:
-        startingGems = 'yyyy';
-        break;
-      case 4:
-      case 5:
-        startingGems = 'yyyg';
-        break;
-      default:
-        console.log('PROBLEM, DREW!');
-      return startingGems;
+  private getStartingGems(turnOrderPosition): string {
+    if (turnOrderPosition === 0) {
+      return 'yyy';
+    } else if (turnOrderPosition === 1 || turnOrderPosition === 2) {
+      return 'yyyy';
+    } else {
+      return 'yyyg';
     }
   }
 
-  private getTurnStatus(turnOrder): boolean {
-    if (turnOrder === 1) {
+  private getTurnStatus(turnOrderPosition): boolean {
+    if (turnOrderPosition === 0) {
       return true;
     } else {
       return false;

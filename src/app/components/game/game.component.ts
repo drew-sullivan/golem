@@ -27,34 +27,31 @@ export class GameComponent implements OnInit {
 
 	public startGame(): void {
 		this.golemDeck.shuffleDeck();
+		console.log(this.golemDeck);
 		this.merchantDeck.shuffleDeck();
 		this.availableGolemCards = this.golemDeck.cards.slice(0, 5);
+		console.log(this.availableGolemCards);
 		this.availableMerchantCards = this.merchantDeck.cards.slice(0, 6);
-		this.shufflePlayers(this.playerNameInput);
-		this.createPlayerObjects(this.playerNameInput);
-	}
-
-	private createPlayerObjects(playerNames): void {
-		this.playerNameInput.map(
-			(playerName, i) => new Player(playerName, i)
-		);
+		this.players = this.shufflePlayers(this.playerNameInput).map((playerName, i) => new Player(playerName, i));
+		// this.players.forEach(player => player.printInfo());
 	}
 
 	// TODO: abstract out with shuffle deck method to avoid duplication
-	private shufflePlayers(players): void {
+	private shufflePlayers(players): string[] {
+		const shuffledPlayers = players;
 		let i = 0;
 		let j = 0;
 		let temp = null;
-		for (i = this.playerNameInput.length; i > 0; i--) {
-			j = Math.floor(Math.random() * this.playerNameInput.length + 1);
-			temp = this.playerNameInput[i];
-			this.playerNameInput[i] = this.playerNameInput[j];
-			this.playerNameInput[j] = temp;
+		for (i = shuffledPlayers.length - 1; i > 0; i--) {
+			j = Math.floor((Math.random() * shuffledPlayers.length));
+			temp = shuffledPlayers[i];
+			shuffledPlayers[i] = shuffledPlayers[j];
+			shuffledPlayers[j] = temp;
 		}
+		return shuffledPlayers;
 	}
 
 	public buyMerchantCard(): void {
 
 	}
-
 }

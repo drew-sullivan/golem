@@ -7,6 +7,7 @@ export class Deck {
   cards: Card[] = [];
 
   constructor(deckType) {
+    this.cards = this.generateDeck(deckType);
   }
 
   public generateDeck(type): Card[] {
