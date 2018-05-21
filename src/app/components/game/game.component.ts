@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { GOLEM } from '../../../assets/golem';
-// import { Deck } from '../../models/deck';
+import { Deck } from '../../models/deck';
+import { Card } from '../../models/card';
 
 @Component({
 	selector: 'app-game',
@@ -11,23 +12,16 @@ import { GOLEM } from '../../../assets/golem';
 export class GameComponent implements OnInit {
 
 	game: any = GOLEM;
-	// golemDeck: Deck;
+	golemDeck = new Deck('golem');
+	merchantDeck = new Deck('merchant');
 
 	constructor() { }
 
 	ngOnInit() {
-		this.generateDeck();
-	}
-
-	// showDeck(): void {
-	//   this.golemDeck.forEach(element => {
-	//     console.log(element);
-	//   });
-	// }
-
-	generateDeck(): any {
-		console.log(this.game['cards']['point']);
-		return;
+		console.log('\n\n\nGOLEM');
+		this.golemDeck.showDeck();
+		console.log('\n\n\nMERCHANT');
+		this.merchantDeck.showDeck();
 	}
 
 }

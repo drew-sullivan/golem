@@ -89,7 +89,7 @@ export const GOLEM = {
 					{ 'gemsOut': 'yg' },
 					{ 'gemsOut': 'yt' },
 					{ 'gemsOut': 'gg' },
-					{ 'gemsOut': '+++' }
+					{ 'gemsIn': 3, 'gemsOut': '+++' }
 				]
 			}
 		}
