@@ -3,19 +3,14 @@ import { GOLEM } from '../../assets/golem';
 
 export class Deck {
 
-  public cards: Card[];
   private game = GOLEM;
+  cards: Card[] = [];
 
-  constructor(type) {
-    if (type === 'golem') {
-      this.cards = this.generateDeck('golem');
-    } else {
-      this.cards = this.generateDeck('merchant');
-    }
+  constructor(deckType) {
   }
 
   public generateDeck(type): Card[] {
-    let cards = null;
+    let cards;
     if (type === 'golem') {
       const tempCards = this.game['cards']['point'];
       cards = tempCards.map(item => this.castToCard(item));
@@ -46,7 +41,7 @@ export class Deck {
     }
   }
 
-  private castToCard(obj, multiplesAllowed = false): Card {
+  public castToCard(obj, multiplesAllowed = false): Card {
     return new Card(obj.gemsIn, obj.pointsOut, obj.gemsOut, multiplesAllowed);
   }
 }

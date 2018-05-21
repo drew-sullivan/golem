@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Deck } from '../../models/deck';
 import { Card } from '../../models/card';
+import { Hand } from '../../models/hand';
+import { Player } from '../../models/player';
 
 @Component({
 	selector: 'app-game',
@@ -14,6 +16,7 @@ export class GameComponent implements OnInit {
 	merchantDeck = new Deck('merchant');
 	availableGolemCards: Card[];
 	availableMerchantCards: Card[];
+	players: Player[] = [];
 
 	constructor() { }
 
@@ -26,6 +29,16 @@ export class GameComponent implements OnInit {
 		this.merchantDeck.shuffleDeck();
 		this.availableGolemCards = this.golemDeck.cards.slice(0, 5);
 		this.availableMerchantCards = this.merchantDeck.cards.slice(0, 6);
+		const drew = new Player('Drew');
+		const rebecca = new Player('Rebecca');
+		this.players.push(drew);
+		this.players.push(rebecca);
+		drew.printInfo();
+		rebecca.printInfo();
+	}
+
+	public buyMerchantCard(): void {
+
 	}
 
 }
