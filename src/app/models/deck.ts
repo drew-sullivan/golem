@@ -3,8 +3,8 @@ import { GOLEM } from '../../assets/golem';
 
 export class Deck {
 
-  game = GOLEM;
-  cards: Card[];
+  public cards: Card[];
+  private game = GOLEM;
 
   constructor(type) {
     if (type === 'golem') {
@@ -29,11 +29,24 @@ export class Deck {
     return cards;
   }
 
-  castToCard(obj): Card {
-    return new Card(obj['gemsIn'], obj['pointsOut'], obj['gemsOut']);
+  public showDeck(): void {
+    this.cards.map(item => console.log(item));
   }
 
-  showDeck(): void {
-    this.cards.map(item => console.log(item));
+  public shuffleDeck(): void {
+    // Fisher-Yates Shuffle
+    let i = 0;
+    let j = 0;
+    let temp = null;
+    for (i = this.cards.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      temp = this.cards[i];
+      this.cards[i] = this.cards[j];
+      this.cards[j] = temp;
+    }
+  }
+
+  private castToCard(obj): Card {
+    return new Card(obj['gemsIn'], obj['pointsOut'], obj['gemsOut']);
   }
 }
