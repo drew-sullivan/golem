@@ -1,9 +1,13 @@
 <h2>Golem Deck</h2>
 <ul>
-  <li *ngFor="let card of golemDeck.cards">{{ card.gemsIn }}</li>
+  <li *ngFor="let card of availableGolemCards">
+    <span>Cost: {{ card.gemsIn }} - Points: {{ card.pointsOut }}</span>
+  </li>
 </ul>
 
 <h2>Merchant Deck</h2>
 <ul>
-  <li *ngFor="let card of merchantDeck.cards">{{ card.gemsIn }}</li>
+  <li *ngFor="let card of availableMerchantCards">
+    <span>Cost: {{ card.gemsIn }} - Gems Received: {{ card.gemsOut }} - Multiple? {{ card.multiplesAllowed }}</span>
+  </li>
 </ul>

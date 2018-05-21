@@ -12,12 +12,20 @@ export class GameComponent implements OnInit {
 
 	golemDeck = new Deck('golem');
 	merchantDeck = new Deck('merchant');
+	availableGolemCards: Card[];
+	availableMerchantCards: Card[];
 
 	constructor() { }
 
 	ngOnInit() {
+		this.startGame();
+	}
+
+	public startGame(): void {
 		this.golemDeck.shuffleDeck();
 		this.merchantDeck.shuffleDeck();
+		this.availableGolemCards = this.golemDeck.cards.slice(0, 5);
+		this.availableMerchantCards = this.merchantDeck.cards.slice(0, 6);
 	}
 
 }

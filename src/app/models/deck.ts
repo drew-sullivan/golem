@@ -22,7 +22,7 @@ export class Deck {
     } else {
       const tempMultiplesAllowedCards = this.game['cards']['merchant']['nonStarting']['multiplesAllowed'];
       const tempMultiplesNotAllowedCards = this.game['cards']['merchant']['nonStarting']['multiplesNotAllowed'];
-      const multiplesAllowedCards = tempMultiplesAllowedCards.map(item => this.castToCard(item));
+      const multiplesAllowedCards = tempMultiplesAllowedCards.map(item => this.castToCard(item, true));
       const multiplesNotAllowedCards = tempMultiplesNotAllowedCards.map(item => this.castToCard(item));
       cards = multiplesAllowedCards.concat(multiplesNotAllowedCards);
     }
@@ -46,7 +46,8 @@ export class Deck {
     }
   }
 
-  private castToCard(obj): Card {
-    return new Card(obj['gemsIn'], obj['pointsOut'], obj['gemsOut']);
+  private castToCard(obj, multiplesAllowed = false): Card {
+    // console.log(new Card(obj.gemsIn, obj.pointsOut, obj.gemsOut, multiplesAllowed));
+    return new Card(obj.gemsIn, obj.pointsOut, obj.gemsOut, multiplesAllowed);
   }
 }
