@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { GameService } from './../../services/game.service';
+import { GemService } from './../../services/gem.service';
 
 import { Deck } from '../../models/deck';
 import { Card } from '../../models/card';
@@ -18,7 +19,7 @@ export class GameComponent implements OnInit {
 	availableMerchantCards: Card[] = [];
 	activePlayer: Player = this.gameService.activePlayer;
 
-	constructor(private gameService: GameService) {
+	constructor(private gameService: GameService, private gemService: GemService) {
 		this.availableGolemCards = this.gameService.availableGolemCards;
 		this.availableMerchantCards = this.gameService.availableMerchantCards;
 		this.gameService.activePlayerChange.subscribe(value => this.activePlayer = value);
@@ -31,8 +32,8 @@ export class GameComponent implements OnInit {
 		if (cardType === 'merchant') {
 
 		} else {
-			const cost = this.gameService.getGemCounts(card.gemsIn);
-			const gemsOnHand = this.gameService.getGemCounts(this.activePlayer.gems);
+			const cost = this.gemService.getGemCounts(card.gemsIn);
+			const gemsOnHand = this.gemService.getGemCounts(this.activePlayer.gems);
 			for (const gemType in cost) {
 				if (gemsOnHand[gemType] < cost[gemType]) {
 					console.log('Not enough dough for that one!');
