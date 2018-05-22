@@ -1,6 +1,6 @@
 <h2>Hand</h2>
 <div class="row">
-  <div class="card col-md-2" *ngFor="let card of cards" (click)="playCard(card)">
+  <div class="card col-md-2" *ngFor="let card of hand" (click)="playCard(card)">
     <div class="card-body">
       <p>Cost: {{ card.gemsIn }}</p>
       <p>Gems Received: {{ card.gemsOut }}</p>
@@ -8,3 +8,13 @@
     </div>
   </div>
 </div>
+<h2>Discard</h2>
+<div class="row">
+    <div class="card col-md-2" *ngFor="let card of discardPile" (click)="playCard(card)">
+      <div class="card-body">
+        <p>Cost: {{ card.gemsIn }}</p>
+        <p>Gems Received: {{ card.gemsOut }}</p>
+        <p class="mb-2 text-muted">Multiple Uses? {{ card.multiplesAllowed }}</p>
+      </div>
+    </div>
+  </div>

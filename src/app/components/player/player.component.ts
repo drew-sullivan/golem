@@ -13,24 +13,28 @@ import { CardService } from '../../services/card.service';
 export class PlayerComponent implements OnInit {
 
   game = GOLEM;
-  cards: Card[] = [];
+  hand: Card[] = [];
+  discardPile: Card[] = [];
 
   constructor(public cardService: CardService) {
     const tempStartingCards = this.game['cards']['merchant']['starting'];
     const startingCards = tempStartingCards.map(obj => this.cardService.castToCard(obj));
-    startingCards.forEach(card => this.cards.push(card));
+    startingCards.forEach(card => this.hand.push(card));
   }
 
   ngOnInit() {
   }
 
   public playCard(card): void {
+    // TODO: multiples
     if (card.multiplesAllowed) {
+      return;
+    } else {
       return;
     }
   }
 
   public show(): void {
-    this.cards.forEach(card => console.log(card));
+    this.hand.forEach(card => console.log(card));
   }
 }
