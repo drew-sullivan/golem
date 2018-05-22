@@ -1,4 +1,5 @@
 import { Card } from './card';
+import { Gems } from './gems';
 import { GOLEM } from '../../assets/golem';
 
 export class Player {
@@ -8,7 +9,7 @@ export class Player {
   points: number;
   hand: Card[];
   discardPile: Card[];
-  gems: string;
+  gems: Gems;
   turnOrderPosition: number;
   isActivePlayer: boolean;
 
@@ -34,13 +35,13 @@ export class Player {
     `);
   }
 
-  private getStartingGems(turnOrderPosition): string {
+  private getStartingGems(turnOrderPosition): Gems {
     if (turnOrderPosition === 0) {
-      return 'yyy';
+      return new Gems(5, 5, 5, 5);
     } else if (turnOrderPosition === 1 || turnOrderPosition === 2) {
-      return 'yyyy';
+      return new Gems(4, 4, 4, 4);
     } else {
-      return 'yyyg';
+      return new Gems(3, 1);
     }
   }
 
