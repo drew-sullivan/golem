@@ -1,6 +1,6 @@
 <h2>Hand</h2>
 <div class="row">
-  <div class="card col-md-2" *ngFor="let card of hand" (click)="playCard(card)">
+  <div class="card col-md-2" *ngFor="let card of activePlayer.hand" (click)="playCard(card)">
     <div class="card-body">
       <p>Cost: {{ card.gemsIn }}</p>
       <p>Gems Received: {{ card.gemsOut }}</p>
@@ -8,10 +8,10 @@
     </div>
   </div>
 </div>
-<div *ngIf="discardPile.length !== 0">
+<div *ngIf="activePlayer.discardPile.length !== 0">
   <h2>Discard</h2>
   <div class="row">
-    <div class="card col-md-2" *ngFor="let card of discardPile" (click)="playCard(card)">
+    <div class="card col-md-2" *ngFor="let card of activePlayer.discardPile" (click)="playCard(card)">
       <div class="card-body">
         <p>Cost: {{ card.gemsIn }}</p>
         <p>Gems Received: {{ card.gemsOut }}</p>

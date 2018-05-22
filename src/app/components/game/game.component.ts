@@ -28,6 +28,20 @@ export class GameComponent implements OnInit {
 	}
 
 	public purchaseCard(card, cardType): void {
-		console.log(card, cardType);
+		if (cardType === 'merchant') {
+
+		} else {
+			const cost = this.gameService.getGemCounts(card.gemsIn);
+			const gemsOnHand = this.gameService.getGemCounts(this.activePlayer.gems);
+			for (const gemType in cost) {
+				if (gemsOnHand[gemType] < cost[gemType]) {
+					console.log('Not enough dough for that one!');
+					return;
+				}
+			}
+			const points = card.pointsOut;
+		}
+
+		console.log(this.activePlayer.gems);
 	}
 }

@@ -40,6 +40,18 @@ export class GameService {
     this.activePlayerChange.next(this.activePlayer);
   }
 
+  public getGemCounts(gems: string): object {
+    const counter = {};
+    for (let i = 0; i < gems.length; i++) {
+      if (counter[gems[i]]) {
+        counter[gems[i]]++;
+      } else {
+        counter[gems[i]] = 1;
+      }
+    }
+    return counter;
+  }
+
 	// TODO: abstract out with shuffle deck method to avoid duplication
 	private shufflePlayers(players): string[] {
 		const shuffledPlayers = players;

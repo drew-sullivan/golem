@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { GOLEM } from './../../../assets/golem';
 import { Card } from './../../models/card';
+import { Player } from '../../models/player';
 
 import { CardService } from '../../services/card.service';
 import { GameService } from './../../services/game.service';
@@ -14,16 +15,14 @@ import { GameService } from './../../services/game.service';
 export class PlayerComponent implements OnInit {
 
   game = GOLEM;
-  hand: Card[] = [];
-  discardPile: Card[] = [];
+  activePlayer: Player = this.gameService.activePlayer;
 
   constructor(public cardService: CardService, public gameService: GameService) {
-    const tempStartingCards = this.game['cards']['merchant']['starting'];
-    const startingCards = tempStartingCards.map(obj => this.cardService.castToCard(obj));
-    startingCards.forEach(card => this.hand.push(card));
+    this.gameService.activePlayerChange.subscribe(value => this.activePlayer = value);
   }
 
   ngOnInit() {
+    // console.log(this.activePlayer.printInfo());
   }
 
   public playCard(card): void {
@@ -40,6 +39,6 @@ export class PlayerComponent implements OnInit {
   }
 
   public show(): void {
-    this.hand.forEach(card => console.log(card));
+    this.activePlayer.hand.forEach(card => console.log(card));
   }
 }
