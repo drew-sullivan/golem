@@ -6,13 +6,13 @@ import { CardService } from './services/card.service';
 
 import { AppComponent } from './app.component';
 import { GameComponent } from './components/game/game.component';
-import { HandComponent } from './components/hand/hand.component';
+import { PlayerComponent } from './components/player/player.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameComponent,
-    HandComponent
+    PlayerComponent
   ],
   imports: [
     BrowserModule,

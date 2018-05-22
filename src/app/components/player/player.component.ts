@@ -6,11 +6,11 @@ import { Card } from './../../models/card';
 import { CardService } from '../../services/card.service';
 
 @Component({
-  selector: 'app-hand',
-  templateUrl: './hand.component.html',
-  styleUrls: ['./hand.component.css']
+  selector: 'app-player',
+  templateUrl: './player.component.html',
+  styleUrls: ['./player.component.css']
 })
-export class HandComponent implements OnInit {
+export class PlayerComponent implements OnInit {
 
   game = GOLEM;
   cards: Card[] = [];
@@ -24,8 +24,13 @@ export class HandComponent implements OnInit {
   ngOnInit() {
   }
 
+  public playCard(card): void {
+    if (card.multiplesAllowed) {
+      return;
+    }
+  }
+
   public show(): void {
     this.cards.forEach(card => console.log(card));
   }
-
 }

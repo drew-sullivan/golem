@@ -1,6 +1,6 @@
 <h2>Hand</h2>
 <div class="row">
-  <div class="card col-md-2" *ngFor="let card of cards">
+  <div class="card col-md-2" *ngFor="let card of cards" (click)="playCard(card)">
     <div class="card-body">
       <p>Cost: {{ card.gemsIn }}</p>
       <p>Gems Received: {{ card.gemsOut }}</p>

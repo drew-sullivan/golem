@@ -7,6 +7,7 @@ export class Player {
   name: string;
   points: number;
   hand: Card[];
+  discardPile: Card[];
   gems: string;
   turnOrderPosition: number;
   isActivePlayer: boolean;
@@ -15,6 +16,7 @@ export class Player {
     this.name = name;
     this.points = 0;
     this.hand =  this.game.cards.merchant.starting.map(item => this.castToCard(item));
+    this.discardPile = [];
     this.gems = this.getStartingGems(turnOrderPosition);
     this.turnOrderPosition = turnOrderPosition;
     this.isActivePlayer = this.getTurnStatus(turnOrderPosition);
@@ -25,9 +27,10 @@ export class Player {
     Name: ${this.name}
     Points: ${this.points}
     Hand: ${this.hand}
+    Discard Pile: ${this.discardPile}
     Gems: ${this.gems}
-    turnOrderPosition: ${this.turnOrderPosition}
-    Currently this player's turn? ${this.isActivePlayer}
+    Turn Order: ${this.turnOrderPosition}
+    Active Player: ${this.isActivePlayer}
     `);
   }
 
