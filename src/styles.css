@@ -2,3 +2,25 @@
 .card {
   cursor: pointer;
 }
+
+.gem {
+  display: inline;
+}
+
+.yellow-gem {
+  color: yellow;
+  background-color: black;
+  border-radius: 50px;
+}
+
+.green-gem {
+  color: green;
+}
+
+.turquoise-gem {
+  color: turquoise
+}
+
+.magenta-gem {
+  color: magenta
+}

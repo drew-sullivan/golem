@@ -21,6 +21,7 @@ export class Deck {
       const multiplesAllowedCards = tempMultiplesAllowedCards.map(item => this.castToCard(item, true));
       const multiplesNotAllowedCards = tempMultiplesNotAllowedCards.map(item => this.castToCard(item));
       cards = multiplesAllowedCards.concat(multiplesNotAllowedCards);
+      console.log(cards);
     }
     return cards;
   }

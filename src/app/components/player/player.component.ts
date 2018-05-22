@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { GOLEM } from './../../../assets/golem';
 import { Card } from './../../models/card';
 import { Player } from '../../models/player';
 
@@ -14,7 +13,6 @@ import { GameService } from './../../services/game.service';
 })
 export class PlayerComponent implements OnInit {
 
-  game = GOLEM;
   activePlayer: Player = this.gameService.activePlayer;
 
   constructor(public cardService: CardService, public gameService: GameService) {
