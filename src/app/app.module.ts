@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { CardService } from './services/card.service';
+
 import { AppComponent } from './app.component';
 import { GameComponent } from './components/game/game.component';
 import { HandComponent } from './components/hand/hand.component';
@@ -16,7 +18,7 @@ import { HandComponent } from './components/hand/hand.component';
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [CardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

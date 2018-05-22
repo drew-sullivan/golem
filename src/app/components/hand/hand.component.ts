@@ -13,7 +13,7 @@ import { CardService } from '../../services/card.service';
 export class HandComponent implements OnInit {
 
   game = GOLEM;
-  cards: Card[];
+  cards: Card[] = [];
 
   constructor(public cardService: CardService) {
     const tempStartingCards = this.game['cards']['merchant']['starting'];
