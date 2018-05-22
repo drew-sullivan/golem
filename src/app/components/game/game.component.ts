@@ -16,12 +16,12 @@ export class GameComponent implements OnInit {
 
 	availableGolemCards: Card[] = [];
 	availableMerchantCards: Card[] = [];
-	activePlayer: Player;
+	activePlayer: Player = this.gameService.activePlayer;
 
-	constructor(public gameService: GameService) {
+	constructor(private gameService: GameService) {
 		this.availableGolemCards = this.gameService.availableGolemCards;
 		this.availableMerchantCards = this.gameService.availableMerchantCards;
-		this.activePlayer = this.gameService.activePlayer;
+		this.gameService.activePlayerChange.subscribe(value => this.activePlayer = value);
 	}
 
 	ngOnInit() {

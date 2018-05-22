@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { Subject } from 'rxjs/Subject';
+
 import { Deck } from '../models/deck';
 import { Card } from '../models/card';
 import { Hand } from '../models/hand';
@@ -16,6 +18,7 @@ export class GameService {
   players: Player[] = [];
   activePlayer: Player = null;
   activePlayerIndex = 0;
+  activePlayerChange: Subject<Player> = new Subject<Player>();
 
   constructor() {
     this.golemDeck.shuffleDeck();
@@ -23,7 +26,8 @@ export class GameService {
 		this.availableGolemCards = this.golemDeck.cards.slice(0, 5);
 		this.availableMerchantCards = this.merchantDeck.cards.slice(0, 6);
     this.players = this.shufflePlayers(this.playerNameInput).map((playerName, i) => new Player(playerName, i));
-    this.activePlayer = this.players[this.activePlayerIndex];
+    this.activePlayer = this.players[0];
+    this.activePlayerChange.subscribe(value => this.activePlayer = value);
   }
 
   public endTurn(): void {
@@ -32,6 +36,8 @@ export class GameService {
     } else {
       this.activePlayerIndex++;
     }
+    this.activePlayer = this.players[this.activePlayerIndex];
+    this.activePlayerChange.next(this.activePlayer);
   }
 
 	// TODO: abstract out with shuffle deck method to avoid duplication
