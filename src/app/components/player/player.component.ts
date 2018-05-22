@@ -4,6 +4,7 @@ import { GOLEM } from './../../../assets/golem';
 import { Card } from './../../models/card';
 
 import { CardService } from '../../services/card.service';
+import { GameService } from './../../services/game.service';
 
 @Component({
   selector: 'app-player',
@@ -16,7 +17,7 @@ export class PlayerComponent implements OnInit {
   hand: Card[] = [];
   discardPile: Card[] = [];
 
-  constructor(public cardService: CardService) {
+  constructor(public cardService: CardService, public gameService: GameService) {
     const tempStartingCards = this.game['cards']['merchant']['starting'];
     const startingCards = tempStartingCards.map(obj => this.cardService.castToCard(obj));
     startingCards.forEach(card => this.hand.push(card));
@@ -32,6 +33,10 @@ export class PlayerComponent implements OnInit {
     } else {
       return;
     }
+  }
+
+  public endTurn(): void {
+    this.gameService.endTurn();
   }
 
   public show(): void {
