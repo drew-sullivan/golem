@@ -1,13 +1,20 @@
 <h2>Golem Deck</h2>
-<ul>
-  <li *ngFor="let card of availableGolemCards">
-    <span>Cost: {{ card.gemsIn }} - Points: {{ card.pointsOut }}</span>
-  </li>
-</ul>
+<div class="row">
+  <div class="card col-md-2" *ngFor="let card of availableGolemCards">
+    <div class="card-body">
+      <p>Cost: {{ card.gemsIn }}</p>
+      <p class="mb-2 text-muted">Points: {{ card.pointsOut }}</p>
+    </div>
+  </div>
+</div>
 
 <h2>Merchant Deck</h2>
-<ul>
-  <li *ngFor="let card of availableMerchantCards">
-    <span>Cost: {{ card.gemsIn }} - Gems Received: {{ card.gemsOut }} - Multiple? {{ card.multiplesAllowed }}</span>
-  </li>
-</ul>
+<div class="row">
+  <div class="card col-md-2" *ngFor="let card of availableMerchantCards" (click)="purchaseCard(card, 'merchant')">
+    <div class="card-body">
+      <p>Cost: {{ card.gemsIn }}</p>
+      <p>Gems Received: {{ card.gemsOut }}</p>
+      <p class="mb-2 text-muted">Multiple Uses? {{ card.multiplesAllowed }}</p>
+    </div>
+  </div>
+</div>

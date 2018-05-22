@@ -48,7 +48,7 @@ export class GameComponent implements OnInit {
 		return shuffledPlayers;
 	}
 
-	public buyMerchantCard(): void {
-
+	public purchaseCard(card, cardType): void {
+		console.log(card, cardType);
 	}
 }
